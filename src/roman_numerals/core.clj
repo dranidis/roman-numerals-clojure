@@ -1,16 +1,12 @@
 (ns roman-numerals.core)
 
-(defn n-symbols
-  [n s]
-  (apply str (map (fn [_] s) (range n))))
-
 (defn arabic->roman-1-9
   [x [one five ten]]
   (cond
-    (< x 4) (n-symbols x one)
     (= x 4) (str one five)
     (= x 9) (str one ten)
-    (> x 4) (str five (n-symbols (- x 5) one))))
+    (< x 4) (apply str (repeat x one))
+    (> x 4) (str five (apply str (repeat (- x 5) one)))))
 
 (defn arabic->roman
   [x]
@@ -21,6 +17,3 @@
                      [10 "X" "L" "C"]
                      [1 "I" "V" "X"]]))
     nil))
-
-(arabic->roman 9)
-
