@@ -25,4 +25,29 @@
     (is (= "VIII" (roman 8))))
   
   (testing "9"
-    (is (= "IX" (roman 9)))))
+    (is (= "IX" (roman 9))))
+  
+  (testing "10"
+    (is (= "X" (roman 10))))
+  
+  (testing "11"
+    (is (= "XI" (roman 11))))
+  
+  (testing "13"
+    (is (= "XIII" (roman 13))))
+  
+  (testing "14"
+    (is (= "XIV" (roman 14))))
+  
+  (testing "19"
+    (is (= "XIX" (roman 19))))
+  
+  (testing "20"
+    (is (= "XX" (roman 20))))
+  
+  (testing "30"
+    (is (= "XXX" (roman 30))))
+  
+  (testing "40"
+    (is (= "XL" (roman 40))))
+  )
