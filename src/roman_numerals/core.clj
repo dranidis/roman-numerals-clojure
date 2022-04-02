@@ -1,29 +1,24 @@
 (ns roman-numerals.core)
 
-(defn n-symbols 
+(defn n-symbols
   [n s]
   (apply str (map (fn [_] s) (range n))))
 
-(defn roman-unit
+(defn arabic->roman-1-9
   [x [one five ten]]
   (cond
-    (= (rem x 5) 4) (str one (nth [five ten] (quot x 5)))
     (< x 4) (n-symbols x one)
-    (> x 4) (str (nth ["" five ten] (quot x 5))
-                 (roman-unit (- x (* (quot x 5) 5)) [one five ten]))))
-(defn roman
+    (= x 4) (str one five)
+    (= x 9) (str one ten)
+    (> x 4) (str five (n-symbols (- x 5) one))))
+
+(defn arabic->roman
   [x]
-  (let [tens (quot x 10)
-        units (rem x 10)]
-    (str (roman-unit tens ["X" "L" "C"]) (roman-unit units ["I" "V" "X"]))))
+  (if (< x 4000)
+    (str (arabic->roman-1-9 (quot x 1000) ["M" nil nil])
+         (arabic->roman-1-9 (quot (rem x 1000) 100) ["C" "D" "M"])
+         (arabic->roman-1-9 (quot (rem x 100) 10) ["X" "L" "C"])
+         (arabic->roman-1-9 (quot (rem x 10) 1) ["I" "V" "X"]))
+  nil))
 
 
-(rem 14 5)
-(rem 10 5)
-
-(quot 0 5)
-(quot 5 5)
-(quot 10 5)
-
-(quot 20 10)
-(rem 20 10)
