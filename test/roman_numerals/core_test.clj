@@ -16,4 +16,13 @@
     (is (= "IV" (roman 4))))
 
   (testing "5"
-    (is (= "V" (roman 5)))))
+    (is (= "V" (roman 5))))
+  
+  (testing "6"
+    (is (= "VI" (roman 6))))
+  
+  (testing "8"
+    (is (= "VIII" (roman 8))))
+  
+  (testing "9"
+    (is (= "IX" (roman 9)))))

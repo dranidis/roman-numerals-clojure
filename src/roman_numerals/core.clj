@@ -6,7 +6,9 @@
 
 (defn roman
   [x]
-  (case x
-   4 "IV"
-   5 "V"
-   (n-symbols x "I")))
+  (cond 
+   (= (rem x 5) 4) (str "I" (nth ["V" "X"] (quot x 5)))
+   (> x 4) (str "V" (roman (- x 5)))
+   (< x 4) (n-symbols x "I")))
+
+
