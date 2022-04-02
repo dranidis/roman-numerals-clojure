@@ -6,4 +6,7 @@
 
 (defn roman
   [x]
- (n-symbols x "I"))
+  (case x
+   4 "IV"
+   5 "V"
+   (n-symbols x "I")))
