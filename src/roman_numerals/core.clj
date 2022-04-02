@@ -15,10 +15,12 @@
 (defn arabic->roman
   [x]
   (if (< x 4000)
-    (str (arabic->roman-1-9 (quot x 1000) ["M" nil nil])
-         (arabic->roman-1-9 (quot (rem x 1000) 100) ["C" "D" "M"])
-         (arabic->roman-1-9 (quot (rem x 100) 10) ["X" "L" "C"])
-         (arabic->roman-1-9 (quot (rem x 10) 1) ["I" "V" "X"]))
-  nil))
+    (apply str (map (fn [[n & digits]] (arabic->roman-1-9 (quot (rem x (* n 10)) n) digits))
+                    [[1000 "M" nil nil]
+                     [100 "C" "D" "M"]
+                     [10 "X" "L" "C"]
+                     [1 "I" "V" "X"]]))
+    nil))
 
+(arabic->roman 9)
 
