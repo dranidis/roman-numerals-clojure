@@ -1,8 +1,8 @@
 (ns roman-numerals.core-test
   (:require [clojure.test :refer [deftest testing is]]
-            [roman-numerals.core :refer [arabic->roman]]))
+            [roman-numerals.core :refer [arabic->roman roman->arabic]]))
 
-(deftest a-test
+(deftest arabic->roman-test
   (testing "1"
     (is (= "I" (arabic->roman 1))))
 
@@ -63,3 +63,12 @@
   (testing "3999"
     (is (= "MMMCMXCIX" (arabic->roman 3999))))
   )
+
+(deftest roman->arabic-test
+  (testing "1"
+    (is (= 1 (roman->arabic "I"))))
+  (testing "3"
+    (is (= 3 (roman->arabic "III"))))
+  (testing "4"
+    (is (= 4 (roman->arabic "IV"))))
+)
