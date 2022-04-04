@@ -69,7 +69,9 @@
   (testing "3"
     (is (= 3 (roman->arabic "III"))))
   (testing "4"
-    (is (= 4 (roman->arabic "IV")))))
+    (is (= 4 (roman->arabic "IV"))))
+  (testing "3999"
+    (is (= 3999 (roman->arabic "MMMCMXCIX")))))
 
 (deftest round-trip
   (testing "1-3999"

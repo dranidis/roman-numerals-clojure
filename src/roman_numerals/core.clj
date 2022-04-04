@@ -50,16 +50,14 @@
 (defn roman->arabic
   [number]
   (if (empty? number) 0
-      (let [largest (last (filter
-                           (fn [v] (= 0 (index-of number v)))
-                           (map (fn [k] (map-arabic->roman k)) (sort (keys map-arabic->roman)))))]
+      (let [largest (last (filter #(= 0 (index-of number %))
+                                  (sort (vals map-arabic->roman))))]
         (+ (map-roman->arabic largest) (roman->arabic (subs number (count largest)))))))
 
 (defn arabic->roman
   [number]
   (if (zero? number) ""
-      (let [largest (last (filter #(>= number %) (sort (vals map-roman->arabic))))]
+      (let [largest (last (filter #(>= number %)
+                                  (sort (vals map-roman->arabic))))]
         (str (map-arabic->roman largest) (arabic->roman (- number largest))))))
-
-
 
